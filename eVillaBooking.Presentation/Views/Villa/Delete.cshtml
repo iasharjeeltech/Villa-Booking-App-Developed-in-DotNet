@@ -3,16 +3,16 @@
 <div class="row">
 	<div class="w-100 card">
 
-		<div class="text-danger" asp-validation-summary="ModelOnly"></div>
 		<div class="card-header bg-success bg0gradient text-center border p-2 m-3">
-			<div>Create New List</div>
+			<div>Edit New List</div>
 		</div>
 		<div class="card-body">
-			<form asp-action="Create" asp-controller="Villa" method="post">
 
+			<form asp-action="DeleteConfirm" asp-controller="Villa" method="post">
+				<input type="hidden" asp-for="Id" />
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Name" class="form-control" placeholder="" />
+						<input disabled type="text" asp-for="Name" class="form-control" placeholder="" />
 						<label asp-for="Name"></label>
 						<span asp-validation-for="Name" class="text-danger"></span>
 					</div>
@@ -20,7 +20,7 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Description" class="form-control" placeholder="" />
+						<input disabled type="text" asp-for="Description" class="form-control" placeholder="" />
 						<label asp-for="Description"></label>
 						<span asp-validation-for="Description" class="text-danger"></span>
 					</div>
@@ -28,7 +28,7 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Price" class="form-control" placeholder="" />
+						<input disabled type="text" asp-for="Price" class="form-control" placeholder="" />
 						<label asp-for="Price"></label>
 						<span asp-validation-for="Price" class="text-danger"></span>
 					</div>
@@ -36,7 +36,7 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Sqft" class="form-control" placeholder=""/>
+						<input disabled type="text" asp-for="Sqft" class="form-control" placeholder="" />
 						<label asp-for="Sqft"></label>
 						<span asp-validation-for="Sqft" class="text-danger"></span>
 					</div>
@@ -44,7 +44,7 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Occupancy" class="form-control" placeholder="" />
+						<input disabled type="text" asp-for="Occupancy" class="form-control" placeholder="" />
 						<label asp-for="Occupancy"></label>
 						<span asp-validation-for="Occupancy" class="text-danger"></span>
 					</div>
@@ -53,14 +53,14 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="ImageUrl" class="form-control" placeholder="" />
+						<input disabled type="text" asp-for="ImageUrl" class="form-control" placeholder="" />
 						<label asp-for="ImageUrl"></label>
 						<span asp-validation-for="ImageUrl" class="text-danger"></span>
 					</div>
 				</div>
 
 				<div class="py-2 text-center">
-					<input type="submit" value="Save" class="btn btn-success" />
+					<input type="submit" value="Delete" class="btn btn-danger"/>
 					<a asp-action="Index" asp-controller="Villa" class="btn btn-warning">Cancel</a>
 				</div>
 
@@ -70,8 +70,3 @@
 
 	</div>
 </div>
-@section Scripts{
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
-}

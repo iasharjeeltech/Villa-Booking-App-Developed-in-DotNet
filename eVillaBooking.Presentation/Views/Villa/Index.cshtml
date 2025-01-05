@@ -14,17 +14,19 @@
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
-							<th>Name</th>
-							<th>Discription</th>
-							<th>Price</th>
-							<th>Square Feet</th>
-							<th>Occupancy</th>
-							@* <th>Image URL</th> *@
-							@* <th>Action<th/> *@
+						<th>Name</th>
+						<th>Discription</th>
+						<th>Price</th>
+						<th>Square Feet</th>
+						<th>Occupancy</th>
+						@* <th>Image URL</th> *@
+						<th>Action
+						<th />
 					</tr>
 				</thead>
 				<tbody>
-					@foreach(var villa in Model){
+					@foreach (var villa in Model)
+					{
 						<tr>
 							<td>@villa.Name</td>
 							<td>@villa.Description</td>
@@ -32,6 +34,19 @@
 							<td>@villa.Sqft</td>
 							<td>@villa.Occupancy</td>
 							@* <td>@villa.ImageUrl</td> *@
+							<td>
+								<a class="btn btn-primary" asp-controller="Villa" asp-action="Edit" asp-route-id="@villa.Id"> <i class="bi bg-pencil-square"></i> Edit</a>
+								<a class="btn btn-danger" asp-controller="Villa" asp-action="Delete" asp-route-id="@villa.Id">Delete</a>
+								
+
+								@* <a asp-action="Edit" asp-controller="Villa" asp-route-id="@villa.Id" class="btn btn-primary"> *@
+								@* 	<i class="bi bg-pencil-square"></i> *@
+								@* </a> *@
+
+								@* <a asp-action="Edit" asp-controller="Villa" asp-route-id="@villa.Id" class="btn btn-primary"> *@
+								@* 	<i class="bi bg-pencil-square"></i> *@
+								@* </a> *@
+							</td>
 						</tr>
 					}
 				</tbody>

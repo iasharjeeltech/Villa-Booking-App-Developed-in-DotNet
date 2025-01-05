@@ -3,13 +3,12 @@
 <div class="row">
 	<div class="w-100 card">
 
-		<div class="text-danger" asp-validation-summary="ModelOnly"></div>
 		<div class="card-header bg-success bg0gradient text-center border p-2 m-3">
-			<div>Create New List</div>
+			<div>Edit New List</div>
 		</div>
 		<div class="card-body">
-			<form asp-action="Create" asp-controller="Villa" method="post">
-
+			<form asp-action="Edit" asp-controller="Villa" method="post">
+				<input type="hidden" asp-for="Id" />
 				<div class="py-1">
 					<div class="form-floating">
 						<input type="text" asp-for="Name" class="form-control" placeholder="" />
@@ -36,7 +35,7 @@
 
 				<div class="py-1">
 					<div class="form-floating">
-						<input type="text" asp-for="Sqft" class="form-control" placeholder=""/>
+						<input type="text" asp-for="Sqft" class="form-control" placeholder="" />
 						<label asp-for="Sqft"></label>
 						<span asp-validation-for="Sqft" class="text-danger"></span>
 					</div>
@@ -70,8 +69,3 @@
 
 	</div>
 </div>
-@section Scripts{
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
-}
