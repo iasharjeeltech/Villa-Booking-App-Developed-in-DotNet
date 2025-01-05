@@ -27,7 +27,7 @@ namespace eVillaBooking.Infrastructher.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "MyProperty",
+                table: "MyProperty", 
                 keyColumn: "Id",
                 keyValue: 1);
 
