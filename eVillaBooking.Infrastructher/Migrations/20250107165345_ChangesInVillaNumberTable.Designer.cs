@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eVillaBooking.Infrastructher.Data;
 
@@ -11,9 +12,11 @@ using eVillaBooking.Infrastructher.Data;
 namespace eVillaBooking.Infrastructher.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250107165345_ChangesInVillaNumberTable")]
+    partial class ChangesInVillaNumberTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,42 +104,9 @@ namespace eVillaBooking.Infrastructher.Migrations
                     b.Property<string>("SpecialDetails")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Villa_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("Villa_Number");
 
-                    b.HasIndex("Villa_Id");
-
                     b.ToTable("VillaNumber");
-
-                    b.HasData(
-                        new
-                        {
-                            Villa_Number = 101,
-                            Villa_Id = 1
-                        },
-                        new
-                        {
-                            Villa_Number = 102,
-                            Villa_Id = 2
-                        },
-                        new
-                        {
-                            Villa_Number = 103,
-                            Villa_Id = 3
-                        });
-                });
-
-            modelBuilder.Entity("eVillaBooking.Domain.Entities.VillaNumber", b =>
-                {
-                    b.HasOne("eVillaBooking.Domain.Entities.Villa", "Villa")
-                        .WithMany()
-                        .HasForeignKey("Villa_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Villa");
                 });
 #pragma warning restore 612, 618
         }

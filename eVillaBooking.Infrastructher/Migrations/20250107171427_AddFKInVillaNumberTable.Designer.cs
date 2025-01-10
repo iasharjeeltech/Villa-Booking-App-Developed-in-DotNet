@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eVillaBooking.Infrastructher.Data;
 
@@ -11,9 +12,11 @@ using eVillaBooking.Infrastructher.Data;
 namespace eVillaBooking.Infrastructher.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250107171427_AddFKInVillaNumberTable")]
+    partial class AddFKInVillaNumberTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,23 +112,6 @@ namespace eVillaBooking.Infrastructher.Migrations
                     b.HasIndex("Villa_Id");
 
                     b.ToTable("VillaNumber");
-
-                    b.HasData(
-                        new
-                        {
-                            Villa_Number = 101,
-                            Villa_Id = 1
-                        },
-                        new
-                        {
-                            Villa_Number = 102,
-                            Villa_Id = 2
-                        },
-                        new
-                        {
-                            Villa_Number = 103,
-                            Villa_Id = 3
-                        });
                 });
 
             modelBuilder.Entity("eVillaBooking.Domain.Entities.VillaNumber", b =>

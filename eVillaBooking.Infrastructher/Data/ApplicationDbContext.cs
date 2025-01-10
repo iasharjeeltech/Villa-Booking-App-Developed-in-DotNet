@@ -10,7 +10,7 @@ namespace eVillaBooking.Infrastructher.Data
             
         }
         public DbSet<Villa> MyProperty { get; set; }
-
+        public DbSet<VillaNumber> VillaNumber { get; set; }
         //FLuent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,26 @@ namespace eVillaBooking.Infrastructher.Data
             //Data Seeding
             modelBuilder.Entity<Villa>().HasData(seedData);
             //base.OnModelCreating(modelBuilder);
+
+
+            modelBuilder.Entity<VillaNumber>().HasData(
+                new VillaNumber()
+                {
+                    Villa_Id = 1,
+                    Villa_Number = 101,
+                },
+                new VillaNumber()
+                {
+                    Villa_Id = 2,
+                    Villa_Number = 102,
+                },
+                new VillaNumber()
+                {
+                    Villa_Id = 3,
+                    Villa_Number = 103,
+                }
+                );
+
         }
     }
 }

@@ -1,0 +1,57 @@
+﻿@model VillaNumber
+
+<div class="row">
+	<div class="w-100 card">
+
+		<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+		<div class="card-header bg-success bg-gradient text-center border p-2 m-3">
+			<div>Edit New Villa Number</div>
+		</div>
+		<div class="card-body">
+
+			<form asp-action="Edit" asp-controller="VillaNumber" method="post">
+
+				<input type="hidden" asp-for="Villa_Number"/>
+				<div class="form-floating py-1"> 
+					@* yahan dropdown list recieve ho rhi hai *@
+					<select class="form-select" asp-for="Villa_Id" asp-items="@(ViewData["SelectListItem"] as IEnumerable<SelectListItem>)">
+						<option selected disabled>Select Villa Name</option>
+					</select>
+					<label asp-for="Villa_Id"></label>
+					<span asp-validation-for="Villa_Id" class="text-danger"></span>
+				</div>
+
+
+				<div class="py-1">
+					<div class="form-floating">
+						<input type="text" disabled asp-for="Villa_Number" class="form-control" placeholder="" />
+						<label asp-for="Villa_Number"></label>
+						<span asp-validation-for="Villa_Number" class="text-danger"></span>
+					</div> 
+				</div>
+
+				<div class="py-1">
+					<div class="form-floating">
+						<input type="text" asp-for="SpecialDetails" class="form-control" placeholder="" />
+						<label asp-for="SpecialDetails"></label>
+						<span asp-validation-for="SpecialDetails" class="text-danger"></span>
+					</div>
+				</div>
+
+
+				<div class="py-2 text-center">
+					<input type="submit" value="Save" class="btn btn-success" />
+					<a asp-action="Index" asp-controller="VillaNumber" class="btn btn-warning">Cancel</a>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+</div>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+} 
