@@ -1,46 +1,63 @@
 ﻿@model IEnumerable<VillaNumber>
 
-<div class="row">
-	<div class="w-100 card">
-
-		<div class="card-header bg-success bg-gradient text-center border p-2 m-3">
-			<div>Villa Number List</div>
-		</div>
-		<div class="card-body">
-			<div class="text-end m-2">
-				<a asp-action="Create" asp-controller="VillaNumber" class="btn btn-danger">
-					<i class="bi bi-plus-circle-fill"></i> Add New VillaNumber
-				</a>
-			</div>
-			<table class="table table-hover table-striped">
-				<thead>
-					<tr>
-						<th>Villa Number</th>
-						<th>Special Details</th>
-						<th>Villa Name</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach (var VillaNumber in Model)
-					{
-						<tr>
-							<td>@VillaNumber.Villa_Number</td>
-							<td>@VillaNumber.SpecialDetails</td>
-							<td>@VillaNumber.Villa?.Name</td> <!-- Displaying the Villa's Name -->
-							<td>
-								<a class="btn btn-primary" asp-controller="VillaNumber" asp-action="Edit" asp-route-id="@VillaNumber.Villa_Number">
-									<i class="bi bi-pencil-square"></i> Edit
-								</a>
-								<a class="btn btn-danger" asp-controller="VillaNumber" asp-action="Delete" asp-route-id="@VillaNumber.Villa_Number">
-									Delete
-								</a>
-							</td>
-						</tr>
-					}
-				</tbody>
-			</table>
-		</div>
-
-	</div>
+<div class="container py-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-gradient bg-success text-white text-center">
+            <h4 class="mb-0">Villa Number List</h4>
+        </div>
+        <div class="card-body">
+            <div class="text-end mb-3">
+                <a asp-action="Create" asp-controller="VillaNumber" class="btn btn-danger shadow-sm">
+                    <i class="bi bi-plus-circle-fill"></i> Add New Villa Number
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Villa Number</th>
+                            <th>Special Details</th>
+                            <th>Villa Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">
+                                    No Villa Numbers available.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var VillaNumber in Model)
+                            {
+                                <tr>
+                                    <td class="text-center fw-bold">@VillaNumber.Villa_Number</td>
+                                    <td>@VillaNumber.SpecialDetails</td>
+                                    <td>@VillaNumber.Villa?.Name ?? "<span class='text-danger'>No Villa Assigned</span>"</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-primary btn-sm me-1 shadow-sm"
+                                           asp-controller="VillaNumber"
+                                           asp-action="Edit"
+                                           asp-route-id="@VillaNumber.Villa_Number">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm shadow-sm"
+                                           asp-controller="VillaNumber"
+                                           asp-action="Delete"
+                                           asp-route-id="@VillaNumber.Villa_Number">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

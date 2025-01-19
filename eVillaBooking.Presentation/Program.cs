@@ -1,4 +1,6 @@
+using eVillaBooking.Application.Common.Interfaces;
 using eVillaBooking.Infrastructher.Data;
+using eVillaBooking.Infrastructher.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>( opt =>
     string connectionString = builder.Configuration.GetValue<string>("MyConnectionStrings:DefaultConnection")!;
     opt.UseSqlServer(connectionString);
 });
+
+
+builder.Services.AddScoped<IVillaRepository, VillaRepository>();
 
 var app = builder.Build();
 

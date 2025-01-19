@@ -2,7 +2,67 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <!-- Welcome Section -->
+    <div class="text-center">
+        <h1 class="display-4 fw-bold text-primary">Welcome to eVillaBooking</h1>
+        <p class="lead text-muted">
+            Discover and book luxurious villas with ease. Experience comfort and elegance like never before!
+        </p>
+    </div>
+
+    <!-- Featured Villas Section -->
+    <div class="mt-5">
+        <h2 class="text-center text-secondary mb-4">Featured Villas</h2>
+        <div class="row">
+            <!-- Villa 1 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="~/Images/Roomimages/1.jpg" class="card-img-top" alt="Villa 1" />
+                    <div class="card-body">
+                        <h5 class="card-title">Luxury Villa 1</h5>
+                        <p class="card-text">
+                            Experience unmatched luxury and stunning views in this modern villa.
+                        </p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Villa 2 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="~/Images/Roomimages/2.jpg" class="card-img-top" alt="Villa 2" />
+                    <div class="card-body">
+                        <h5 class="card-title">Elegant Villa 2</h5>
+                        <p class="card-text">
+                            Perfect for family vacations, offering both comfort and elegance.
+                        </p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Villa 3 -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="~/Images/Roomimages/3.jpg" class="card-img-top" alt="Villa 3" />
+                    <div class="card-body">
+                        <h5 class="card-title">Cozy Villa 3</h5>
+                        <p class="card-text">
+                            Relax in a tranquil setting with modern amenities and a serene environment.
+                        </p>
+                        <a href="#" class="btn btn-primary">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="mt-5 text-center">
+        <h2 class="text-secondary">Contact Us</h2>
+        <p>
+            Have any questions? Reach out to us, and we'll be happy to assist you.
+        </p>
+        <a href="/contact" class="btn btn-outline-primary btn-lg">Contact Us</a>
+    </div>
 </div>

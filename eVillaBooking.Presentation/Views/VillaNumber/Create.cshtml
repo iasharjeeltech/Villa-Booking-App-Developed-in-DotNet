@@ -11,7 +11,7 @@
 			<form asp-action="Create" asp-controller="VillaNumber" method="post">
 
 					<div class="form-floating py-1">
-						<select class="form-select" asp-items="@(ViewData["SelectListItem"] as IEnumerable<SelectListItem>)">
+						<select class="form-select" asp-items="@(ViewData["SelectListItem"] as IEnumerable<SelectListItem>)" asp-for="Villa_Id">
 							<option asp-for="Villa_Id">Select Villa Name</option>
 						</select>
 						<label asp-for="Villa_Id"></label>

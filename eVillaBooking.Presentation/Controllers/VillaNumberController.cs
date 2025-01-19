@@ -59,7 +59,7 @@ namespace eVillaBooking.Presentation.Controllers
 
         public IActionResult Edit(int id)
         {
-            var villaNumber = _db.VillaNumber.Find(id);
+            var villaNumber = _db.VillaNumber.FirstOrDefault(vn => vn.Villa_Number==id);
             
             if (villaNumber is null)
             {
@@ -93,28 +93,30 @@ namespace eVillaBooking.Presentation.Controllers
 
         public IActionResult Delete(int id)
         {
-            var villaNumber = _db.VillaNumber.Find(id);
+            var villaNumber = _db.VillaNumber.FirstOrDefault(vn => vn.Villa_Number==id);
             if (villaNumber is null)
             {
                 return NotFound();
             }
+
+            //yeh niche dropdown ki list send ho rhi hai! 
+            var selectListItem = _db.MyProperty.Select(v => new SelectListItem
+            {
+                Value = v.Id.ToString(),
+                Text = v.Name
+            }).ToList();
+
+            ViewData["SelectListItem"] = selectListItem;
             return View(villaNumber);
         }
 
-        //[HttpPost]
-        //public IActionResult Delete (Villa villa)
-        //{
-        //    _db.VillaNumber.Remove(villa);
-        //    _db.SaveChanges();
-        //    return RedirectToAction(nameof(Index));
-        //}
-        //the above code is working properly 
-
         [HttpPost]
-        public IActionResult DeleteConfirm(int id)
+        //public IActionResult DeleteConfirm(IFormCollection formValues,int? villa_number)
+        public IActionResult DeleteConfirm( int? villa_number)
         {
-            var villaNumber = _db.VillaNumber.Find(id);
-            _db.VillaNumber.Remove(villaNumber);
+            //int test = Convert.ToInt16(formValues["Villa_Number"]);
+            var villaNumberToBeDeleted = _db.VillaNumber.FirstOrDefault(vn => vn.Villa_Number==villa_number);
+            _db.VillaNumber.Remove(villaNumberToBeDeleted);
             _db.SaveChanges();
             TempData["SuccessMessage"] = "Villa Number Deleted Successfully!";
             return RedirectToAction(nameof(Index));

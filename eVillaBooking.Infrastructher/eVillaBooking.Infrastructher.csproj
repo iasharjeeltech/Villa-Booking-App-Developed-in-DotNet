@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\eVillaBooking.Application\eVillaBooking.Application.csproj" />
     <ProjectReference Include="..\eVillaBooking.Domain\eVillaBooking.Domain.csproj" />
   </ItemGroup>
 

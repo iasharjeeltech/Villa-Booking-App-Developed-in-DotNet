@@ -9,8 +9,9 @@ namespace eVillaBooking.Domain.Entities
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Villa_Number { get; set; }
         public string? SpecialDetails { get; set; }
-        [ValidateNever] //for this i added itemgroup in domain pj in cs
+        [ValidateNever] //for this added itemgroup in domain pj in cs
         public Villa Villa { get; set; }
+
         [ForeignKey("Villa")]
         public int Villa_Id { get; set; }
 
