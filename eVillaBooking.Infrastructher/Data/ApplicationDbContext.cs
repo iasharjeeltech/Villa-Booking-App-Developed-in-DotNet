@@ -14,10 +14,8 @@ namespace eVillaBooking.Infrastructher.Data
         //FLuent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             var seedData = new List<Villa>()
-{
+            {
                                   new Villa(){
                                               Id = 1,
                                               Name = "Royal Villa",

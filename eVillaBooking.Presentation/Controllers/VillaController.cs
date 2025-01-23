@@ -8,17 +8,18 @@ namespace eVillaBooking.Presentation.Controllers
 {
     public class VillaController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
+        //private readonly ApplicationDbContext _db;
         private readonly IVillaRepository _villaRepository;
-        public VillaController(IVillaRepository villaRepository)
+        public VillaController(IUnitOfWork unitOfWork)
         {
-            _villaRepository = villaRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
             //return View(_db.MyProperty.ToList());
-            return View(_villaRepository.GetAll());
+            return View(_unitOfWork.VillaRepositoryUOW.GetAll());
         }
 
         public IActionResult Create()
@@ -35,9 +36,9 @@ namespace eVillaBooking.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 //_db.MyProperty.Add(villa);
-                _villaRepository.Add(villa);
+                _unitOfWork.VillaRepositoryUOW.Add(villa);
                 //_db.SaveChanges();
-                _villaRepository.Save();
+                _unitOfWork.Save();
                 TempData["SuccessMessage"] = "Villa Added Successfully!";
                 return RedirectToAction(nameof(Index));
             }
@@ -48,7 +49,7 @@ namespace eVillaBooking.Presentation.Controllers
         public IActionResult Edit(int id)
         {
             //var villa = _db.MyProperty.Find(id);
-            var villa = _villaRepository.Get(v => v.Id == id);
+            var villa = _unitOfWork.VillaRepositoryUOW.Get(v => v.Id == id);
             //var villa1 = _db.MyProperty.FirstOrDefault(v => v.Id == id);
             //var villa2 = _db.MyProperty.SingleOrDefault(v => v.Id == id);
 
@@ -65,8 +66,8 @@ namespace eVillaBooking.Presentation.Controllers
             if (ModelState.IsValid) 
             {
                 //_db.MyProperty.Update(villa);
-                _villaRepository.Update(villa);
-                _villaRepository.Save();
+                _unitOfWork.VillaRepositoryUOW.Update(villa);
+                _unitOfWork.Save();
                 //_db.SaveChanges();
                 TempData["SuccessMessage"] = "Villa Updated Successfully!";
                 return RedirectToAction(nameof(Index));
@@ -77,7 +78,7 @@ namespace eVillaBooking.Presentation.Controllers
         public IActionResult Delete(int id)
         {
             //var villa = _db.MyProperty.Find(id);
-            var villa = _villaRepository.Get(v => v.Id == id);
+            var villa = _unitOfWork.VillaRepositoryUOW.Get(v => v.Id == id);
             if (villa is null)
             {
                 return NotFound();
@@ -98,10 +99,10 @@ namespace eVillaBooking.Presentation.Controllers
         [HttpPost]
         public IActionResult DeleteConfirm (int id)
         {
-            var villa = _villaRepository.Get(v => v.Id == id);
+            var villa = _unitOfWork.VillaRepositoryUOW.Get(v => v.Id == id);
             //var villa = _db.MyProperty.Find(id);
-            _villaRepository.Remove(villa);
-            _villaRepository.Save();
+            _unitOfWork.VillaRepositoryUOW.Remove(villa);
+            _unitOfWork.Save();
              //_db.SaveChanges();
             TempData["SuccessMessage"] = "Villa Deleted Successfully!";
             return RedirectToAction(nameof(Index));
