@@ -11,9 +11,11 @@ namespace eVillaBooking.Presentation.Controllers
         private readonly IUnitOfWork _unitOfWork;
         //private readonly ApplicationDbContext _db;
         private readonly IVillaRepository _villaRepository;
-        public VillaController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public VillaController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -35,6 +37,26 @@ namespace eVillaBooking.Presentation.Controllers
             }
             if (ModelState.IsValid)
             {
+                if(villa.Image is not null)
+                {
+                    string webRootPath = _webHostEnvironment.WebRootPath;
+                    
+                    string imagePath = Path.Combine(webRootPath, @"Images\VillaImages");
+
+                    string newFileName = villa.Image.FileName.Split('.')[0] + "_" + Guid.NewGuid().ToString().Substring(0,5)+Path.GetExtension(villa.Image.FileName);
+                    
+                    string finalImagePath = Path.Combine(imagePath, newFileName);
+
+                    using(FileStream fileStream = new FileStream(finalImagePath, FileMode.Create))
+                    {
+                        villa.Image.CopyTo(fileStream);
+                        villa.ImageUrl = Path.Combine(@"\Images\VillaImages" + newFileName);
+                    } 
+                }
+                else
+                {
+                    villa.ImageUrl = "www.webbears.in"; 
+                }
                 //_db.MyProperty.Add(villa);
                 _unitOfWork.VillaRepositoryUOW.Add(villa);
                 //_db.SaveChanges();

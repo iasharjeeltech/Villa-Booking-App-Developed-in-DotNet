@@ -18,6 +18,7 @@
                         <th>Price</th>
                         <th>Square Feet</th>
                         <th>Occupancy</th>
+						<th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -30,6 +31,9 @@
                             <td>@villa.Price</td>
                             <td>@villa.Sqft</td>
                             <td>@villa.Occupancy</td>
+                            <td>
+                                <img src="@villa.ImageUrl" height="50" width="100" />
+                            </td>
                             <td>
                                 <div class="btn-group" role="group">
                                     <a class="btn btn-primary btn-sm" asp-controller="Villa" asp-action="Edit" asp-route-id="@villa.Id">
