@@ -7,60 +7,72 @@
 			<div>Edit New List</div>
 		</div>
 		<div class="card-body">
-			<form asp-action="Edit" asp-controller="Villa" method="post">
+			<form asp-action="Edit" asp-controller="Villa" method="post" enctype="multipart/form-data">
 				<input type="hidden" asp-for="Id" />
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="Name" class="form-control" placeholder="" />
-						<label asp-for="Name"></label>
-						<span asp-validation-for="Name" class="text-danger"></span>
+
+				<div class="row">
+					<div class="col-9">
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="text" asp-for="Name" class="form-control" placeholder="" />
+								<label asp-for="Name"></label>
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="text" asp-for="Description" class="form-control" placeholder="" />
+								<label asp-for="Description"></label>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="text" asp-for="Price" class="form-control" placeholder="" />
+								<label asp-for="Price"></label>
+								<span asp-validation-for="Price" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="text" asp-for="Sqft" class="form-control" placeholder="" />
+								<label asp-for="Sqft"></label>
+								<span asp-validation-for="Sqft" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="text" asp-for="Occupancy" class="form-control" placeholder="" />
+								<label asp-for="Occupancy"></label>
+								<span asp-validation-for="Occupancy" class="text-danger"></span>
+							</div>
+						</div>
+
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input type="hidden" asp-for="ImageUrl" class="form-control" placeholder="" />
+								<input asp-for="Image" class="form-control" placeholder="" />
+								<label asp-for="ImageUrl"></label>
+								<span asp-validation-for="ImageUrl" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-2 text-center">
+							<input type="submit" value="Save" class="btn btn-success" />
+							<a asp-action="Index" asp-controller="Villa" class="btn btn-warning">Cancel</a>
+						</div>
 					</div>
-				</div>
 
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="Description" class="form-control" placeholder="" />
-						<label asp-for="Description"></label>
-						<span asp-validation-for="Description" class="text-danger"></span>
+					<div class="col-3">
+						<img src="@Model.ImageUrl" width="100%" style=" border-radius:5px; border:1px solid grey" />
 					</div>
-				</div>
 
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="Price" class="form-control" placeholder="" />
-						<label asp-for="Price"></label>
-						<span asp-validation-for="Price" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="Sqft" class="form-control" placeholder="" />
-						<label asp-for="Sqft"></label>
-						<span asp-validation-for="Sqft" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="Occupancy" class="form-control" placeholder="" />
-						<label asp-for="Occupancy"></label>
-						<span asp-validation-for="Occupancy" class="text-danger"></span>
-					</div>
-				</div>
-
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input type="text" asp-for="ImageUrl" class="form-control" placeholder="" />
-						<label asp-for="ImageUrl"></label>
-						<span asp-validation-for="ImageUrl" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-2 text-center">
-					<input type="submit" value="Save" class="btn btn-success" />
-					<a asp-action="Index" asp-controller="Villa" class="btn btn-warning">Cancel</a>
+					
 				</div>
 
 			</form>

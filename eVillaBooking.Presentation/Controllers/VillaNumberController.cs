@@ -14,13 +14,15 @@ namespace eVillaBooking.Presentation.Controllers
         private readonly IUnitOfWork _unitOfWork;
         public VillaNumberController(IUnitOfWork unitOfWork)
         {
-            unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            //var villaNumber = _db.VillaNumber.ToList();
-            //var villaNumber = _db.VillaNumber.Include(vn => vn.Villa).ToList();
-            var villaNumber = _unitOfWork.VillaNumbersRepositoryUOW.GetAll(includeProperties: "Villa");
+            var villaNumber = _unitOfWork.VillaNumbersRepositoryUOW?.GetAll(includeProperties: "Villa");
+            if (villaNumber == null)
+            {
+                return NotFound();
+            }
             return View(villaNumber);
         }
 

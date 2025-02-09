@@ -17,50 +17,6 @@ namespace eVillaBooking.Domain.Entities
         public string? ImageUrl { get; set; } 
         [NotMapped]
         public IFormFile? Image { get; set; }
-
-        public DateTime? CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
 
