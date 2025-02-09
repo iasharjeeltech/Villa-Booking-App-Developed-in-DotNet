@@ -145,7 +145,7 @@ namespace eVillaBooking.Presentation.Controllers
 
         [HttpPost]
         public IActionResult DeleteConfirm (int id)
-        {
+       {
             var villa = _unitOfWork.VillaRepositoryUOW.Get(v => v.Id == id);
 
             if (!string.IsNullOrEmpty(villa.ImageUrl))
