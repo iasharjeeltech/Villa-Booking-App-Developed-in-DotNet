@@ -10,58 +10,60 @@
 
 			<form asp-action="DeleteConfirm" asp-controller="Villa" method="post">
 				<input type="hidden" asp-for="Id" />
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="Name" class="form-control" placeholder="" />
-						<label asp-for="Name"></label>
-						<span asp-validation-for="Name" class="text-danger"></span>
+				<input type="hidden" asp-for="ImageUrl" />
+
+				<div class="row">
+					<div class="col-md-9 col-sm-12 col-xxl-6 ">
+						<div class="py-1">
+							<div class="form-floating">
+								<input disabled type="text" asp-for="Name" class="form-control" placeholder="" />
+								<label asp-for="Name"></label>
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input disabled type="text" asp-for="Description" class="form-control" placeholder="" />
+								<label asp-for="Description"></label>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input disabled type="text" asp-for="Price" class="form-control" placeholder="" />
+								<label asp-for="Price"></label>
+								<span asp-validation-for="Price" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input disabled type="text" asp-for="Sqft" class="form-control" placeholder="" />
+								<label asp-for="Sqft"></label>
+								<span asp-validation-for="Sqft" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-1">
+							<div class="form-floating">
+								<input disabled type="text" asp-for="Occupancy" class="form-control" placeholder="" />
+								<label asp-for="Occupancy"></label>
+								<span asp-validation-for="Occupancy" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="py-2 text-center">
+							<input type="submit" value="Delete" class="btn btn-danger" />
+							<a asp-action="Index" asp-controller="Villa" class="btn btn-warning">Cancel</a>
+						</div>
+
 					</div>
-				</div>
 
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="Description" class="form-control" placeholder="" />
-						<label asp-for="Description"></label>
-						<span asp-validation-for="Description" class="text-danger"></span>
+					<div class="col-md-3 col-sm-12 col-xxl-6 ">
+						<img src="@Model.ImageUrl" clss="img-fluid" alt="Image Not Found" width="100%" style=" border-radius:5px; border:1px solid grey" />
 					</div>
-				</div>
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="Price" class="form-control" placeholder="" />
-						<label asp-for="Price"></label>
-						<span asp-validation-for="Price" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="Sqft" class="form-control" placeholder="" />
-						<label asp-for="Sqft"></label>
-						<span asp-validation-for="Sqft" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="Occupancy" class="form-control" placeholder="" />
-						<label asp-for="Occupancy"></label>
-						<span asp-validation-for="Occupancy" class="text-danger"></span>
-					</div>
-				</div>
-
-
-				<div class="py-1">
-					<div class="form-floating">
-						<input disabled type="text" asp-for="ImageUrl" class="form-control" placeholder="" />
-						<label asp-for="ImageUrl"></label>
-						<span asp-validation-for="ImageUrl" class="text-danger"></span>
-					</div>
-				</div>
-
-				<div class="py-2 text-center">
-					<input type="submit" value="Delete" class="btn btn-danger"/>
-					<a asp-action="Index" asp-controller="Villa" class="btn btn-warning">Cancel</a>
 				</div>
 
 			</form>

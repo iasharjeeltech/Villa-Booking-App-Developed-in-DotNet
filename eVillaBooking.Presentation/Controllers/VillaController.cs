@@ -11,9 +11,11 @@ namespace eVillaBooking.Presentation.Controllers
         private readonly IUnitOfWork _unitOfWork;
         //private readonly ApplicationDbContext _db;
         private readonly IVillaRepository _villaRepository;
-        public VillaController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public VillaController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -35,6 +37,26 @@ namespace eVillaBooking.Presentation.Controllers
             }
             if (ModelState.IsValid)
             {
+                if(villa.Image is not null)
+                {
+                    string webRootPath = _webHostEnvironment.WebRootPath;
+                    
+                    string imagePath = Path.Combine(webRootPath, @"Images\VillaImages");
+
+                    string newFileName = "MyImage" + "_" + Guid.NewGuid().ToString().Substring(0,5)+Path.GetExtension(villa.Image.FileName);
+                    
+                    string finalImagePath = Path.Combine(imagePath, newFileName);
+
+                    using(FileStream fileStream = new FileStream(finalImagePath, FileMode.Create))
+                    {
+                        villa.Image.CopyTo(fileStream);
+                        villa.ImageUrl = Path.Combine(@"\Images\VillaImages", newFileName);
+                    } 
+                }
+                else
+                {
+                    villa.ImageUrl = "www.w  ebbears.in"; 
+                }
                 //_db.MyProperty.Add(villa);
                 _unitOfWork.VillaRepositoryUOW.Add(villa);
                 //_db.SaveChanges();
@@ -65,6 +87,31 @@ namespace eVillaBooking.Presentation.Controllers
         {
             if (ModelState.IsValid) 
             {
+                if (villa.Image is not null)
+                {
+                    string webRootPath = _webHostEnvironment.WebRootPath;
+
+                    string imagePath = Path.Combine(webRootPath, @"Images\VillaImages");
+
+                    string newFileName = "MyImage" + "_" + Guid.NewGuid().ToString().Substring(0, 5) + Path.GetExtension(villa.Image.FileName);
+
+                    string finalImagePath = Path.Combine(imagePath, newFileName);
+                    if (!string.IsNullOrEmpty(villa.ImageUrl))
+                    {
+                        string oldImagePath = Path.Combine(webRootPath, villa.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    using (FileStream fileStream = new FileStream(finalImagePath, FileMode.Create))
+                    {
+                        villa.Image.CopyTo(fileStream);
+                        villa.ImageUrl = Path.Combine(@"\Images\VillaImages", newFileName);
+                    }
+                } 
+
                 //_db.MyProperty.Update(villa);
                 _unitOfWork.VillaRepositoryUOW.Update(villa);
                 _unitOfWork.Save();
@@ -98,8 +145,20 @@ namespace eVillaBooking.Presentation.Controllers
 
         [HttpPost]
         public IActionResult DeleteConfirm (int id)
-        {
+       {
             var villa = _unitOfWork.VillaRepositoryUOW.Get(v => v.Id == id);
+
+            if (!string.IsNullOrEmpty(villa.ImageUrl))
+            {
+                string webRootPath = _webHostEnvironment.WebRootPath;
+
+                string oldImagePath = Path.Combine(webRootPath, villa.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+
             //var villa = _db.MyProperty.Find(id);
             _unitOfWork.VillaRepositoryUOW.Remove(villa);
             _unitOfWork.Save();
