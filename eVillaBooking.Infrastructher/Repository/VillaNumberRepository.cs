@@ -21,9 +21,5 @@ namespace eVillaBooking.Infrastructher.Repository
         {
             _db.VillaNumber.Update(villaNumber);
         }
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
     }
 }
