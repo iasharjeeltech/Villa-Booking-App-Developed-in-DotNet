@@ -35,7 +35,7 @@ namespace eVillaBooking.Presentation.Controllers
                 Value = v.Id.ToString()
             });
 
-            ViewData["SelectListItem"] = selectListItems;
+            ViewBag.SelectListItem = selectListItems;
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace eVillaBooking.Presentation.Controllers
             var selectListItem = _unitOfWork.VillaRepositoryUOW.GetAll().Select(v => new SelectListItem
             {
                 Value = v.Id.ToString(),
-                Text = v.Name
+                Text = v.Name 
             }).ToList();
 
             ViewBag.SelectListItem = selectListItem;
@@ -68,7 +68,7 @@ namespace eVillaBooking.Presentation.Controllers
 
         public IActionResult Edit(int id)
         {
-            var amenity = _unitOfWork.AmenityRepositoryUOW.GetAll().FirstOrDefault(vn => vn.Id == id);
+            var amenity = _unitOfWork.AmenityRepositoryUOW.Get(am => am.Id == id);
 
             if (amenity is null)
             {
@@ -76,13 +76,13 @@ namespace eVillaBooking.Presentation.Controllers
             }
 
             //yeh niche dropdown ki list send ho rhi hai! 
-            var selectListItem = _villaRepository.GetAll().Select(v => new SelectListItem
+            var selectListItem = _unitOfWork.VillaRepositoryUOW.GetAll().Select(v => new SelectListItem
             {
                 Value = v.Id.ToString(),
                 Text = v.Name
             }).ToList();
 
-            ViewData["SelectListItem"] = selectListItem;
+            ViewBag.SelectListItem = selectListItem;
 
             return View(amenity);
         }
@@ -97,6 +97,14 @@ namespace eVillaBooking.Presentation.Controllers
                 TempData["SuccessMessage"] = "Amenity Updated Successfully!";
                 return RedirectToAction(nameof(Index));
             }
+            var selectListItem = _villaRepository.GetAll().Select(v => new SelectListItem
+            {
+                Value = v.Id.ToString(),
+                Text = v.Name
+            }).ToList();
+
+            ViewBag.SelectListItem = selectListItem;
+
             return View(amenity);
         }
 
@@ -120,15 +128,18 @@ namespace eVillaBooking.Presentation.Controllers
             return View(amenity);
         }
 
+        //[HttpPost,ActionName("Delete")] <<yeh bhichal jayga
         [HttpPost]
+        [ActionName("Delete")]
         //public IActionResult DeleteConfirm(IFormCollection formValues,int? villa_number)
-        public IActionResult DeleteConfirm(int? id)
+        public IActionResult DeleteConfirm(int? id, Amenity incomingAmenity)
+
         {
 
             //int test = Convert.ToInt16(formValues["Villa_Number"]);
-            var amenity = _unitOfWork.AmenityRepositoryUOW.Get(vn => vn.Id == id);
+            var amenityFromDb = _unitOfWork.AmenityRepositoryUOW.Get(am => am .Id == id);
             //var amenity = _villaNumberRepository.Get(vn => vn.Villa_Number == villa_number);
-            _unitOfWork.AmenityRepositoryUOW.Remove(amenity);
+            _unitOfWork.AmenityRepositoryUOW.Remove(amenityFromDb);
             _unitOfWork.Save();
             TempData["SuccessMessage"] = "Amenity Deleted Successfully!";
             return RedirectToAction(nameof(Index));

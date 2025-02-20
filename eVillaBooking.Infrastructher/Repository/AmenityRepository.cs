@@ -14,7 +14,7 @@ namespace eVillaBooking.Infrastructher.Repository
 
         public void Update(Amenity amenity)
         {
-            _db.Update(amenity);
+            _db.Amenities.Update(amenity);
         }
     }
 }

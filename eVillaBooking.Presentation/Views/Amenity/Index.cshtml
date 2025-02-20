@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Amenity>
+
+<div class="container py-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-gradient bg-success text-white text-center">
+            <h4 class="mb-0">Amenity List</h4>
+        </div>
+        <div class="card-body">
+            <div class="text-end mb-3">
+                <a asp-action="Create" asp-controller="Amenity" class="btn btn-danger shadow-sm">
+                    <i class="bi bi-plus-circle-fill"></i> Add New Amenity
+                </a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered align-middle">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>Amenity Name</th>
+                            <th>Description</th>
+                            <th>Villa Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted">
+                                    No Villa Numbers available.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (Amenity amenity in Model)
+                            {
+                                <tr>
+                                    <td class="text-center fw-bold">@amenity.Name</td>
+                                    <td>@amenity.Description</td>
+                                    <td>@amenity.Villa?.Name ?? "<span class='text-danger'>No Villa Assigned</span>"</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-primary btn-sm me-1 shadow-sm"
+                                           asp-controller="Amenity"
+                                           asp-action="Edit"
+                                           asp-route-id="@amenity.Id">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm shadow-sm"
+                                           asp-controller="Amenity"
+                                           asp-action="Delete"
+                                           asp-route-id="@amenity.Id">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
