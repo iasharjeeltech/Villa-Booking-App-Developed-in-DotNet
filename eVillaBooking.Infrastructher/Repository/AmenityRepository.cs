@@ -1,25 +1,20 @@
 ﻿using eVillaBooking.Application.Common.Interfaces;
 using eVillaBooking.Domain.Entities;
 using eVillaBooking.Infrastructher.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace eVillaBooking.Infrastructher.Repository
 {
-    public class VillaRepository : Repository<Villa>, IVillaRepository
+    public class AmenityRepository : Repository<Amenity>, IAmenityRepository
     {
-
         private readonly ApplicationDbContext _db;
-        public VillaRepository(ApplicationDbContext db): base(db)   
+        public AmenityRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-
         }
 
-        public void Update(Villa villa)
+        public void Update(Amenity amenity)
         {
-            _db.MyProperty .Update(villa);
+            _db.Amenities.Update(amenity);
         }
-
     }
 }

@@ -11,6 +11,7 @@ namespace eVillaBooking.Infrastructher.Data
         }
         public DbSet<Villa> MyProperty { get; set; }
         public DbSet<VillaNumber> VillaNumber { get; set; }
+        public DbSet<Amenity> Amenities { get; set; }
         //FLuent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -68,6 +69,20 @@ namespace eVillaBooking.Infrastructher.Data
                     Villa_Number = 103,
                 }
                 );
+
+            modelBuilder.Entity<Amenity>().HasData(
+    new Amenity { Id = 1, Name = "Private Pool", VillaId = 1 },
+    new Amenity { Id = 2, Name = "Microwave", VillaId = 1 },
+    new Amenity { Id = 3, Name = "Private Balcony", VillaId = 1 },
+    new Amenity { Id = 4, Name = "1 king bed and 1 sofa bed", VillaId = 1 },
+    new Amenity { Id = 5, Name = "Private Plunge Pool", VillaId = 2 },
+    new Amenity { Id = 6, Name = "Microwave and Mini Refrigerator", VillaId = 2 },
+    new Amenity { Id = 7, Name = "Private Balcony", VillaId = 2 },
+    new Amenity { Id = 8, Name = "King bed or 2 double beds", VillaId = 2 },
+    new Amenity { Id = 9, Name = "Private Pool", VillaId = 3 },
+    new Amenity { Id = 10, Name = "Jacuzzi", VillaId = 3 },
+    new Amenity { Id = 11, Name = "Private Balcony", VillaId = 3 }
+);
 
         }
     }

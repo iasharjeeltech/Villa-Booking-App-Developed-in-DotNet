@@ -1,0 +1,55 @@
+﻿@model Amenity
+
+<div class="row">
+	<div class="w-100 card">
+
+		<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+		<div class="card-header bg-success bg0gradient text-center border p-2 m-3">
+			<div> New Amenity</div>
+		</div>
+		<div class="card-body">
+			<form asp-action="Delete" asp-controller="Amenity" method="post">
+
+				<input type="hidden" asp-for="Id" hidden />
+
+				<div class="form-floating py-1">
+					<select disabled class="form-select" asp-items="@(ViewBag.SelectListItem)" asp-for="VillaId">
+						<option asp-for="Villa_Id">Select Villa Name</option>
+					</select>
+					<label asp-for="VillaId"></label>
+					<span asp-validation-for="VillaId" class="text-danger"></span>
+				</div>
+
+				<div class="py-4 1">
+					<div class="form-floating">
+						<input disabled type="text" asp-for="Name" class="form-control" placeholder="" />
+						<label asp-for="Name"></label>
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="py-1">
+					<div class="form-floating">
+						<input disabled type="text" asp-for="Description" class="form-control" placeholder="" />
+						<label asp-for="Description"></label>
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+				</div>
+
+
+				<div class="py-2 text-center">
+					<input type="submit" value="Save" class="btn btn-success" />
+					<a asp-action="Index" asp-controller="Amenity" class="btn btn-warning">Cancel</a>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+</div>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+} 

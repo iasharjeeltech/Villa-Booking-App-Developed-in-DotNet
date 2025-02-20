@@ -8,24 +8,27 @@ using System.Threading.Tasks;
 
 namespace eVillaBooking.Infrastructher.Repository
 {
-    public class UnitOfWork :  IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _db;
         public IVillaNumberRepository VillaNumbersRepositoryUOW { get; private set; }
 
         public IVillaRepository VillaRepositoryUOW { get; private set; }
 
+        public IAmenityRepository AmenityRepositoryUOW { get; private set; }
+
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             this.VillaRepositoryUOW = new VillaRepository(db);
             this.VillaNumbersRepositoryUOW = new VillaNumberRepository(db);
+            this.AmenityRepositoryUOW = new AmenityRepository(db);
         }
 
         public void Save()
         {
             _db.SaveChanges();
-        
+
         }
     }
 }
