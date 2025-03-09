@@ -1,6 +1,8 @@
 using eVillaBooking.Application.Common.Interfaces;
+using eVillaBooking.Domain.Entities;
 using eVillaBooking.Infrastructher.Data;
 using eVillaBooking.Infrastructher.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,10 @@ builder.Services.AddDbContext<ApplicationDbContext>( opt =>
     string connectionString = builder.Configuration.GetValue<string>("MyConnectionStrings:DefaultConnection")!;
     opt.UseSqlServer(connectionString);
 });
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -1,9 +1,10 @@
 ﻿using eVillaBooking.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace eVillaBooking.Infrastructher.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
@@ -15,6 +16,8 @@ namespace eVillaBooking.Infrastructher.Data
         //FLuent API
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             var seedData = new List<Villa>()
             {
                                   new Villa(){
@@ -49,8 +52,6 @@ namespace eVillaBooking.Infrastructher.Data
 };
             //Data Seeding
             modelBuilder.Entity<Villa>().HasData(seedData);
-            //base.OnModelCreating(modelBuilder);
-
 
             modelBuilder.Entity<VillaNumber>().HasData(
                 new VillaNumber()
