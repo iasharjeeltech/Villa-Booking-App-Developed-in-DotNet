@@ -13,7 +13,12 @@ namespace eVillaBooking.Infrastructher.Data
         public DbSet<Villa> MyProperty { get; set; }
         public DbSet<VillaNumber> VillaNumber { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
+
+        // Add this line to include ApplicationUser in the model
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         //FLuent API
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

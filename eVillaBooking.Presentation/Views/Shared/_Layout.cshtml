@@ -27,30 +27,23 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Content Management
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Villa" asp-action="Index">Villa</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="VillaNumber" asp-action="Index">Villa Number</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Amenity" asp-action="Index">Amenities</a>
-                                </li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Villa" asp-action="Index">Villa</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="VillaNumber" asp-action="Index">Villa Number</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Amenity" asp-action="Index">Amenities</a></li>
                             </ul>
                         </li>
-
-
                     </ul>
+
+                    <partial name="_LoginPartial"/>
                 </div>
+
             </div>
         </nav>
     </header>

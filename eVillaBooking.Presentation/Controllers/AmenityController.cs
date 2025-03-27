@@ -1,10 +1,13 @@
 ﻿using eVillaBooking.Application.Common.Interfaces;
+using eVillaBooking.Application.Utility;
 using eVillaBooking.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace eVillaBooking.Presentation.Controllers
 {
+    [Authorize(Roles =StaticDetails.Role_Admin)]
     public class AmenityController : Controller
     {
         private readonly IVillaNumberRepository _villaNumberRepository;
