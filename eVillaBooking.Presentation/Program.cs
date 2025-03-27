@@ -21,6 +21,18 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.Cookie.Expiration = TimeSpan.FromDays(1);
+    opt.AccessDeniedPath= "/Account/AccessDenied01 ";
+});
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+    //opt.Password.RequiredLength = 14;
+    opt.Password.RequireNonAlphanumeric = true;
+});
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //builder.Services.AddScoped<IVillaRepository, VillaRepository>();
