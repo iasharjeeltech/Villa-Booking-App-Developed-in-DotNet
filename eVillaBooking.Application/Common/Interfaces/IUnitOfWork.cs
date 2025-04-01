@@ -11,6 +11,7 @@ namespace eVillaBooking.Application.Common.Interfaces
         public IVillaNumberRepository VillaNumbersRepositoryUOW { get; }
         public IVillaRepository VillaRepositoryUOW { get; }
         public IAmenityRepository AmenityRepositoryUOW { get; }
+        public IAmenityRepository BookingRepositoryUOW { get; } 
         void Save();
     }
 }
