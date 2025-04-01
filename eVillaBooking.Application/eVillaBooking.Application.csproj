@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Common\Interfaces\IBookingRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Common\Interfaces\IBookingRepository.cs" />
     <None Include="Common\Interfaces\IAmenityRepository.cs" />
   </ItemGroup>
 

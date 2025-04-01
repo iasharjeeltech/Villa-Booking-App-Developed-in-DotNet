@@ -16,6 +16,7 @@ namespace eVillaBooking.Infrastructher.Data
 
         // Add this line to include ApplicationUser in the model
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         //FLuent API
 
 
