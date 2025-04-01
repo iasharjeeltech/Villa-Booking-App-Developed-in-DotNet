@@ -28,9 +28,9 @@ namespace eVillaBooking.Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register(string returnUrl = null) 
+        public IActionResult Register(string? returnUrl = null) 
         {
-            returnUrl ?? = Url.Content("~/");
+            returnUrl ??= Url.Content("~/");
             // Ensure roles exist
             if (!_roleManager.RoleExistsAsync(StaticDetails.Role_Admin).GetAwaiter().GetResult())
             {
@@ -112,7 +112,7 @@ namespace eVillaBooking.Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string? returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
             LoginVM loginVM = new LoginVM()
