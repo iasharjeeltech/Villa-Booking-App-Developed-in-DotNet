@@ -22,6 +22,8 @@ namespace eVillaBooking.Domain.Entities
         public DateTime? UpdateDate { get; set; }
         [ValidateNever]
         public ICollection<Amenity> AmenityList { get; set; }
+        [NotMapped]
+        public bool IsAvailable { get; set; } = true;
        
     }
 }

@@ -1,4 +1,4 @@
-using eVillaBooking.Application.Common.Interfaces;
+﻿using eVillaBooking.Application.Common.Interfaces;
 using eVillaBooking.Domain.Entities;
 using eVillaBooking.Infrastructher.Data;
 using eVillaBooking.Infrastructher.Repository;
@@ -23,9 +23,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(opt =>
 {
-    opt.Cookie.Expiration = TimeSpan.FromDays(1);
-    opt.AccessDeniedPath= "/Account/AccessDenied01 ";
+    opt.ExpireTimeSpan = TimeSpan.FromDays(1); // ✅ Correct Property
+    opt.AccessDeniedPath = "/Account/AccessDenied01";
 });
+
 
 builder.Services.Configure<IdentityOptions>(opt =>
 {

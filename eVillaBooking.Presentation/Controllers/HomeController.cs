@@ -24,8 +24,30 @@ namespace eVillaBooking.Presentation.Controllers
                 Nights = 1,
                 CheckInDate = DateOnly.FromDateTime(DateTime.Now)
             };
-
+             
              return View(homeVM);
+        }
+        [HttpPost]
+        public IActionResult GetVillaByDate(int nights, DateOnly checkInDate)
+        {
+            var villaList = _unitOfWork.VillaRepositoryUOW.GetAll(includeProperties: "AmenityList");
+
+            foreach (Villa villa in villaList)
+            {
+                if(villa.Id % 2 == 0)
+                {
+                    villa.IsAvailable = false;
+                }
+            }
+
+             var homeVM = new HomeVM()
+            {
+                VillaList = villaList,
+                Nights = nights,
+                CheckInDate = checkInDate
+            };
+
+            return PartialView("_VillaList",homeVM);
         }
 
         public IActionResult Privacy()
