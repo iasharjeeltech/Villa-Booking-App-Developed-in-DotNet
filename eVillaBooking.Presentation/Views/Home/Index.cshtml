@@ -81,7 +81,10 @@
                 data : objData,
 
                 success : function(partialView){
+                    $('.custom-spinner').show();
                     $('#VillasList').html(partialView);
+                    $('.custom-spinner').hide();
+
                 },
 
                 failure : function(response){

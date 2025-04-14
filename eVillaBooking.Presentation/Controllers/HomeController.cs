@@ -27,6 +27,7 @@ namespace eVillaBooking.Presentation.Controllers
              
              return View(homeVM);
         }
+
         [HttpPost]
         public IActionResult GetVillaByDate(int nights, DateOnly checkInDate)
         {
