@@ -17,15 +17,17 @@ namespace eVillaBooking.Infrastructher.Repository
 
         public IAmenityRepository AmenityRepositoryUOW { get; private set; }
 
-        public IBookingRepository BookingRepositUOW { get; private set; }
+        public IBookingRepository BookingRepositoryUOW { get; private set; }
+        public IApplicationUserRepository ApplicationUserRepositoryUOW {  get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
-            this.VillaRepositoryUOW = new VillaRepository(db);
-            this.VillaNumbersRepositoryUOW = new VillaNumberRepository(db);
-            this.AmenityRepositoryUOW = new AmenityRepository(db);
-            this.BookingRepositoryUOW = new BookingRepository(db);
+            this.VillaRepositoryUOW = new VillaRepository(_db);
+            this.VillaNumbersRepositoryUOW = new VillaNumberRepository(_db);
+            this.AmenityRepositoryUOW = new AmenityRepository(_db);
+            this.BookingRepositoryUOW = new BookingRepository(_db);
+            this.ApplicationUserRepositoryUOW = new ApplicationUserRepository(_db);
         }
 
         public void Save()

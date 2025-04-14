@@ -1,6 +1,11 @@
-﻿namespace eVillaBooking.Application.Common.Interfaces;
+﻿using eVillaBooking.Domain.Entities;
 
-public interface IBookingRepository : IRepository<Booking>
+namespace eVillaBooking.Application.Common.Interfaces
 {
-    void Update(Booking booking);
+    public interface IBookingRepository : IRepository<Booking>
+    {
+        void Update(Booking booking);
+        void UpdateStatus(int bookingId, string bookingStatus);
+        void UpdateStripePaymentId(int bookingId, string sessionId,string paymentIntentId);
+    }
 }
